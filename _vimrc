@@ -12,7 +12,6 @@
 "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
 " }}}
 
-
 " Environment {{{
     " Identify platform {{{
         "silent function! OSX()
@@ -31,9 +30,9 @@
         "let mapleader      = ' '
         "let maplocalleader = ' '
 
-        " let $config_basedir = '~/.vim'
-        let $config_basedir = $VIM.'/.vim'
-        set rtp^=$config_basedir            "大多数ex命令不会扩展变量名，即，它们不接受表达式。“ set”不是扩展表达式（变量）的命令之一,但可以接受前缀为$的环境变量.
+        " let $config_basedir = '~/vimfiles'
+        let $config_basedir = $VIM.'/vimfiles'
+        " set rtp^=$config_basedir            "大多数ex命令不会扩展变量名，即，它们不接受表达式。“ set”不是扩展表达式（变量）的命令之一,但可以接受前缀为$的环境变量.
         "exe 'set rtp^=' . expand(g:config_basedir)
         "将vim-plug存放目录放入rtp，+=添加在后面，^=添加在前面。"set rtp^=g:config_basedir"这些不行，set不接受变不带任何前缀的变量
         " https://superuser.com/questions/806595/why-the-runtimepath-in-vim-cannot-be-set-as-a-variable
