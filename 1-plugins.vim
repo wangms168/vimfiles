@@ -63,7 +63,7 @@ Plug 'tomasr/molokai'                            "colorscheme
 Plug 'altercation/vim-colors-solarized'          "colorscheme
 Plug 'Yggdroot/indentLine'                       "显示缩进指示线
 let g:indentLine_color_gui = '#A4E57E'
-Plug 'liuchengxu/vim-which-key'
+Plug 'liuchengxu/vim-which-key'                  "which key
 Plug 'haya14busa/incsearch.vim'                  "内置incsearch得改进
 Plug 'vim-airline/vim-airline'                   "状态栏
 Plug 'vim-airline/vim-airline-themes'            "状态栏主题
@@ -81,7 +81,9 @@ Plug 'tpope/vim-scriptease'
 Plug 'kien/ctrlp.vim'                            "终端则使用FZF如果gvim使用CtrlP
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-Plug 'ryanoasis/vim-devicons'
+Plug 'ryanoasis/vim-devicons'                    "向各种vim插件添加文件类型的标志符号(图标)
+Plug 'sillybun/vim-repl'                         "python repl
+
 " Initialize plugin system
 call plug#end()
 
@@ -116,7 +118,7 @@ autocmd VimEnter *
 "    Plugin 'tpope/vim-surround'                        "about "surroundings",关于周围环境：()、[]、“”、XML标记等，轻松地成对删除ds，更改cs和添加ys此类环境。
 "    Plugin 'tpope/vim-repeat'                          ".命令重复surround.vim、speeddating.vim、unimpaired.vim、vim-easyclip等的操作。
 "    Plugin 'jdpxiaoming/winmanager'                    "winmanager有3个插件：winmanager.vim、winfileexplorer.vim、wintagexplorer.vim。winmanager负责界面布局；
-"                                                     "winfileexplorer是改良的Explorer(即现在的netrw)，负责浏览文件；wintagexplorer负责浏览标志列表，用taglist插件代替
+"                                                       "winfileexplorer是改良的Explorer(即现在的netrw)，负责浏览文件；wintagexplorer负责浏览标志列表，用taglist插件代替
 "    Plugin 'vim-scripts/taglist.vim'                   "wintagexplorer.vim – winmanager提供的tag插件，用处不大,用taglist.vim替换。
 "    Plugin 'jlanzarotta/bufexplorer'                   "winmanager配合bufexplorer，用于浏览buffer
 "    Plugin 'whatot/gtags-cscope.vim'                   "包含gtags-cscope.vim和gtags.vim

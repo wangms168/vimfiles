@@ -12,6 +12,7 @@
 "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
 " }}}
 
+
 " Environment {{{
     " Identify platform {{{
         "silent function! OSX()
@@ -30,8 +31,9 @@
         "let mapleader      = ' '
         "let maplocalleader = ' '
 
-        let $config_basedir = '~/.vim'
-        set rtp^=$config_basedir        "大多数ex命令不会扩展变量名，即，它们不接受表达式。“ set”不是扩展表达式（变量）的命令之一,但可以接受前缀为$的环境变量.
+        " let $config_basedir = '~/.vim'
+        let $config_basedir = $VIM.'/.vim'
+        set rtp^=$config_basedir            "大多数ex命令不会扩展变量名，即，它们不接受表达式。“ set”不是扩展表达式（变量）的命令之一,但可以接受前缀为$的环境变量.
         "exe 'set rtp^=' . expand(g:config_basedir)
         "将vim-plug存放目录放入rtp，+=添加在后面，^=添加在前面。"set rtp^=g:config_basedir"这些不行，set不接受变不带任何前缀的变量
         " https://superuser.com/questions/806595/why-the-runtimepath-in-vim-cannot-be-set-as-a-variable
@@ -178,24 +180,24 @@
 
     " Setting up the directories {{{
         " backup、writeback、upundofile、swapfile
-        if !isdirectory(expand('$HOME/.vim/temp/backup'))         " 该文件夹不存在，保存文件时会报“E509 :无法创建备份文件(请加!强制执)"
+        if !isdirectory(expand('$config_basedir/temp/backup'))         " 该文件夹不存在，保存文件时会报“E509 :无法创建备份文件(请加!强制执)"
             "silent exe "!cd ". $HOME."\\.vim"
             "silent exe "!mkdir ".$HOME."\\.vim\\temp\\backup"    “ silent exe "!mkdir ".$HOME."/.vim/backup" 这样cmd会报命令语法错误。
-            silent exe "!mkdir ". shellescape(expand("$HOME/.vim/temp/backup"))
+            silent exe "!mkdir ". shellescape(expand("$config_basedir/temp/backup"))
             " expand展开变量、shellescape转义特殊字符。
         endif
-        if !isdirectory(expand('$HOME/.vim/temp/undo'))
-            silent exe "!mkdir ". shellescape(expand("$HOME/.vim/temp/undo"))
+        if !isdirectory(expand('$config_basedir/temp/undo'))
+            silent exe "!mkdir ". shellescape(expand("$config_basedir/temp/undo"))
         endif
-        if !isdirectory(expand('$HOME/.vim/temp/swap'))
-            silent exe "!mkdir ". shellescape(expand("$HOME/.vim/temp/swap"))
+        if !isdirectory(expand('$config_basedir/temp/swap'))
+            silent exe "!mkdir ". shellescape(expand("$config_basedir/temp/swap"))
         endif
 
         set backup    " Backups are nice ...
-        set backupdir=~/.vim/temp/backup                                  " 结尾有//，下一句就不起作用。
+        set backupdir=$config_basedir/temp/backup                                  " 结尾有//，下一句就不起作用。
         autocmd BufWritePre * let &backupext = strftime(".%m-%d-%H-%M")   " Keep more backups for one file
-        set directory=~/.vim/temp/swap//
-        set undodir=~/.vim/temp/undo//   "设置备份文件、交换文件、操作历史文件的保存位置。结尾的//表示生成的文件名带有绝对路径，路径中用%替换目录分隔符，这样可以防止文件重名。
+        set directory=$config_basedir/temp/swap//
+        set undodir=$config_basedir/temp/undo//   "设置备份文件、交换文件、操作历史文件的保存位置。结尾的//表示生成的文件名带有绝对路径，路径中用%替换目录分隔符，这样可以防止文件重名。
 
         if has('persistent_undo')
             set undofile                " So is persistent undo ...
@@ -288,9 +290,9 @@
     " Remove trailing whitespaces and ^M chars
     " To disable the stripping of whitespace, add the following to your
     " .vimrc.before.local file:
-    "   let g:spf13_keep_trailing_whitespace = 1
-    autocmd FileType c,cpp,java,go,php,javascript,puppet,python,rust,twig,xml,yml,perl,sql autocmd BufWritePre <buffer> if !exists('g:spf13_keep_trailing_whitespace') | call StripTrailingWhitespace() | endif
-    "autocmd FileType go autocmd BufWritePre <buffer> Fmt
+    " let g:spf13_keep_trailing_whitespace = 1
+"    autocmd FileType c,cpp,java,go,php,javascript,puppet,python,rust,twig,xml,yml,perl,sql autocmd BufWritePre <buffer> if !exists('g:spf13_keep_trailing_whitespace') | call StripTrailingWhitespace() | endif
+    " autocmd FileType go autocmd BufWritePre <buffer> Fmt
     autocmd BufNewFile,BufRead *.html.twig set filetype=html.twig
     autocmd FileType haskell,puppet,ruby,yml setlocal expandtab shiftwidth=2 softtabstop=2
     " preceding line best in a plugin but here for now.
@@ -305,9 +307,25 @@
 " }}}
 
 " Key (re)Mappings {{{
-
+    map <buffer> <F9> :exec '!python' shellescape(@%, 1)<cr>
     "https://vim.fandom.com/wiki/Find_in_files_within_Vim
     map <F4> :execute "vimgrep /" . expand("<cword>") . "/j **" <Bar> cw<CR>
+
+    " https://www.py.cn/jishu/jichu/13159.html
+    "一键运行代码
+    function PythonRun() 
+        setlocal makeprg=python\ -u  
+        set efm=%C\ %.%#,%A\ \ File\ \"%f\"\\,\ line\ %l%.%#,%Z%[%^\ ]%\\@=%m 
+        silent make %
+        copen 
+    "  set efm 是设置quickfix的errorformat，以便vim识别  
+    "  makeprg 是vim内置的编译命令，可以通过更改来实现编译对应类型文件。具体可参考vim官方说明文件。
+    "  copen是打开quickfix，n用来设置quichfix窗口大小，如 cope5。在错误描述上回车，可以直接跳转到错误行。
+    endfunction
+    "一个是普通模式下，一个是插入模式下
+    au filetype python map <f5>  :call PythonRun() <cr>
+    au filetype python imap <f5> <esc>  :call PythonRun() <cr></cr></cr></esc></f5></cr></cr></f5>
+
 " }}}
 
 " Plugins {{{

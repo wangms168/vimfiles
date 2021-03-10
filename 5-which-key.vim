@@ -36,7 +36,7 @@ let g:which_key_map['e'] = [ ':CocCommand explorer'       , 'explorer' ]
 let g:which_key_map['f'] = [ ':Files'                     , 'search files' ]
 let g:which_key_map['h'] = [ '<C-W>s'                     , 'split below']
 let g:which_key_map['q'] = [ 'q'                          , 'quit' ]
-let g:which_key_map['r'] = [ ':RnvimrToggle'              , 'ranger' ]
+" let g:which_key_map['r'] = [ ':RnvimrToggle'              , 'ranger' ]
 let g:which_key_map['S'] = [ ':SSave'                     , 'save session' ]
 let g:which_key_map['T'] = [ ':Rg'                        , 'search text' ]
 let g:which_key_map['v'] = [ '<C-W>v'                     , 'split right']
@@ -184,25 +184,25 @@ let g:which_key_map.t = {
       \ }
 
 " w is for wiki
-let g:which_key_map.w = {
-      \ 'name' : '+wiki' ,
-      \ 'w' : ['<Plug>VimwikiIndex'                              , 'ncdu'],
-      \ 'n' : ['<plug>(wiki-open)'                              , 'ncdu'],
-      \ 'j' : ['<plug>(wiki-journal)'                              , 'ncdu'],
-      \ 'R' : ['<plug>(wiki-reload)'                              , 'ncdu'],
-      \ 'c' : ['<plug>(wiki-code-run)'                              , 'ncdu'],
-      \ 'b' : ['<plug>(wiki-graph-find-backlinks)'                              , 'ncdu'],
-      \ 'g' : ['<plug>(wiki-graph-in)'                              , 'ncdu'],
-      \ 'G' : ['<plug>(wiki-graph-out)'                              , 'ncdu'],
-      \ 'l' : ['<plug>(wiki-link-toggle)'                              , 'ncdu'],
-      \ 'd' : ['<plug>(wiki-page-delete)'                              , 'ncdu'],
-      \ 'r' : ['<plug>(wiki-page-rename)'                              , 'ncdu'],
-      \ 't' : ['<plug>(wiki-page-toc)'                              , 'ncdu'],
-      \ 'T' : ['<plug>(wiki-page-toc-local)'                              , 'ncdu'],
-      \ 'e' : ['<plug>(wiki-export)'                              , 'ncdu'],
-      \ 'u' : ['<plug>(wiki-list-uniq)'                              , 'ncdu'],
-      \ 'U' : ['<plug>(wiki-list-uniq-local)'                              , 'ncdu'],
-      \ }
+" let g:which_key_map.w = {
+"       \ 'name' : '+wiki' ,
+"       \ 'w' : ['<Plug>VimwikiIndex'                              , 'ncdu'],
+"       \ 'n' : ['<plug>(wiki-open)'                              , 'ncdu'],
+"       \ 'j' : ['<plug>(wiki-journal)'                              , 'ncdu'],
+"       \ 'R' : ['<plug>(wiki-reload)'                              , 'ncdu'],
+"       \ 'c' : ['<plug>(wiki-code-run)'                              , 'ncdu'],
+"       \ 'b' : ['<plug>(wiki-graph-find-backlinks)'                              , 'ncdu'],
+"       \ 'g' : ['<plug>(wiki-graph-in)'                              , 'ncdu'],
+"       \ 'G' : ['<plug>(wiki-graph-out)'                              , 'ncdu'],
+"       \ 'l' : ['<plug>(wiki-link-toggle)'                              , 'ncdu'],
+"       \ 'd' : ['<plug>(wiki-page-delete)'                              , 'ncdu'],
+"       \ 'r' : ['<plug>(wiki-page-rename)'                              , 'ncdu'],
+"       \ 't' : ['<plug>(wiki-page-toc)'                              , 'ncdu'],
+"       \ 'T' : ['<plug>(wiki-page-toc-local)'                              , 'ncdu'],
+"       \ 'e' : ['<plug>(wiki-export)'                              , 'ncdu'],
+"       \ 'u' : ['<plug>(wiki-list-uniq)'                              , 'ncdu'],
+"       \ 'U' : ['<plug>(wiki-list-uniq-local)'                              , 'ncdu'],
+"       \ }
 
 " Global
 " <Plug>VimwikiIndex

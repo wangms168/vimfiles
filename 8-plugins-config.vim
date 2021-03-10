@@ -48,7 +48,7 @@
 
 " vim-which-key {{{
     if isdirectory(expand(plugdir."/vim-which-key/"))
-        source $VIM/vimfiles/5-which-key.vim
+"        source $VIM/vimfiles/5-which-key.vim
     endif
 " }}}
 
@@ -703,7 +703,7 @@
 " }}}
 
 " Wildfire {{{
-let g:wildfire_objects = {
+    let g:wildfire_objects = {
             \ "*" : ["i'", 'i"', "i)", "i]", "i}", "ip"],
             \ "html,xml" : ["at"],
             \ }
@@ -751,4 +751,27 @@ let g:wildfire_objects = {
 "    " ctrlp glyphs
 "    let g:webdevicons_enable_ctrlp = 1
 "" }}}
+
+" vim-repl {{{
+     if isdirectory(expand(plugdir."/vim-repl/"))
+        let g:repl_program = {
+                    \   'python': ['python', '-i'],
+                    \   'default': ['zsh'],
+                    \   'r': 'R',
+                    \   'lua': 'lua',
+                    \   'vim': 'vim -e',
+                    \   }
+        let g:repl_predefine_python = {
+                    \   'numpy': 'import numpy as np',
+                    \   'matplotlib': 'from matplotlib import pyplot as plt'
+                    \   }
+        let g:repl_auto_sends = ['class ', 'def ', 'for ', 'if ', 'while ', 'with ']
+        let g:repl_cursor_down = 1
+        let g:repl_python_automerge = 1
+        let g:repl_unhide_when_send_lines = 0
+        let g:repl_output_copy_to_register = "t"
+        let g:repl_position = 0
+        nnoremap <leader>r :REPLToggle<Cr>
+     endif
+" }}}
 
