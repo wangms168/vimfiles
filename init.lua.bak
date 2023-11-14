@@ -1,0 +1,4 @@
+vim.cmd('source C:/Users/Administrator/AppData/Local/nvim/option.vim')
+--或者如下：
+--vim.cmd([[exec 'source C:/Users/Administrator/AppData/Local/nvim/option.vim']])
+--vim.cmd [[exec 'source C:/Users/Administrator/AppData/Local/nvim/option.vim']]
